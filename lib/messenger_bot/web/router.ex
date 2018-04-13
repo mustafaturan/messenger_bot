@@ -1,0 +1,38 @@
+defmodule MessengerBot.Web.Router do
+  @moduledoc false
+
+  ############################################################################
+  # Router for messenger webhooks                                            #
+  ############################################################################
+
+  use Plug.Router
+  alias MessengerBot.Web.Renderer
+  alias MessengerBot.Web.Controller.Messenger
+  alias MessengerBot.Web.Plug.{MaxBodyLength, AppIdentification, AppAuthentication, Transaction, EventBus}
+
+  plug(Transaction)
+  plug(EventBus)
+  plug(MaxBodyLength)
+  plug(AppIdentification)
+  plug(AppAuthentication)
+  plug(:match)
+  plug(:dispatch)
+
+  ############################################################################
+  # All Facebook Messenger webhook events will hit to this endpoint
+  # POST /:app_id
+  ############################################################################
+  post _, do: Messenger.callback(conn)
+
+  ############################################################################
+  # Facebook Messenger Bot setup will hit to this endpoint
+  # GET /:app_id
+  ############################################################################
+  get _, do: Messenger.setup(conn)
+
+  ############################################################################
+  # 404 response to all other routes
+  # HEAD, GET, POST, PUT, PATCH, DELETE, OPTIONS /(.+)
+  ############################################################################
+  match _, do: Renderer.send_error(conn, {:not_found, %{page: "Not found!"}})
+end

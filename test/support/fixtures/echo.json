@@ -1,0 +1,27 @@
+{
+  "object": "page",
+  "entry": [
+    {
+      "id": "1234",
+      "time": 1522564261185,
+      "messaging": [
+        {
+          "sender": {
+            "id": "1234"
+          },
+          "recipient": {
+            "id": "1415373448519816"
+          },
+          "timestamp": 1522564260935,
+          "message": {
+            "is_echo": true,
+            "app_id": 1881,
+            "mid": "mid.$cAADlV_cgpTxosSwsR1if-bjgkY9_",
+            "seq": 24553,
+            "text": "Test message"
+          }
+        }
+      ]
+    }
+  ]
+}

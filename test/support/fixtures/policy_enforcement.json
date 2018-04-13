@@ -1,0 +1,21 @@
+{
+  "object": "page",
+  "entry": [
+    {
+      "id": "1234",
+      "time": 1473208792799,
+      "messaging": [
+        {
+          "recipient":{
+            "id":"1234"
+          },
+          "timestamp":1458692752478,
+          "policy-enforcement":{
+            "action":"block",
+            "reason":"The bot violated our Platform Policies (https://developers.facebook.com/policy/#messengerplatform). Common violations include sending out excessive spammy messages or being non-functional."
+          }
+        }
+      ]
+    }
+  ]
+}

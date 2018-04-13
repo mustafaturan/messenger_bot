@@ -1,0 +1,24 @@
+{
+  "object": "page",
+  "entry": [
+    {
+      "id": "1234",
+      "time": 1518479195594,
+      "messaging": [
+        {
+          "sender":{
+            "id":"USER_ID"
+          },
+          "recipient":{
+            "id":"1234"
+          },
+          "timestamp":1234567890,
+          "account_linking":{
+            "status":"linked",
+            "authorization_code":"PASS_THROUGH_AUTHORIZATION_CODE"
+          }
+        }
+      ]
+    }
+  ]
+}

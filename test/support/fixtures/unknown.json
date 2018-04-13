@@ -1,0 +1,22 @@
+{
+  "object": "page",
+  "entry": [
+    {
+      "id": "1234",
+      "time": 1518479195594,
+      "messaging": [
+        {
+          "sender":{
+            "id":"<PSID>"
+          },
+          "recipient":{
+            "id":"1234"
+          },
+          "timestamp":1458692752478,
+          "x": {
+          }
+        }
+      ]
+    }
+  ]
+}

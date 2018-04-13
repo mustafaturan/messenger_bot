@@ -1,0 +1,19 @@
+{
+  "object":"page",
+  "entry":[
+    {
+      "id":"1234",
+      "time":1458692752478,
+      "standby":[
+        {
+          "sender":{
+            "id":"<USER_ID>"
+          },
+          "recipient":{
+            "id":"1234"
+          }
+        }
+      ]
+    }
+  ]
+}

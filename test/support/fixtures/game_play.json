@@ -1,0 +1,28 @@
+{
+  "object": "page",
+  "entry": [
+    {
+      "id": "1234",
+      "time": 1518479195594,
+      "messaging": [
+        {
+          "sender": {
+            "id": "<PSID>"
+          },
+          "recipient": {
+            "id": "1234"
+          },
+          "timestamp": 1469111400000,
+          "game_play": {
+            "game_id": "<GAME-APP-ID>",
+            "player_id": "<PLAYER-ID>",
+            "context_type": "<CONTEXT-TYPE:SOLO|THREAD>",
+            "context_id": "<CONTEXT-ID>",
+            "score": 12345678,
+            "payload": "<PAYLOAD>"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "object": "page",
+  "entry": [
+    {
+      "id": "1234",
+      "time": 1518479195594,
+      "messaging": [
+        {
+          "pre_checkout":{
+            "payload":"xyz",
+            "requested_user_info":{
+              "shipping_address":{
+                "name":"Tao Jiang",
+                "street_1":"600 Edgewater Blvd",
+                "street_2":"",
+                "city":"Foster City",
+                "state":"CA",
+                "country":"US",
+                "postal_code":"94404"
+              },
+              "contact_name":"Tao Jiang"
+            },
+            "amount":{
+              "currency":"USD",
+              "amount":"2.70"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

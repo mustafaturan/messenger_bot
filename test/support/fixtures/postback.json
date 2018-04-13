@@ -1,0 +1,24 @@
+{
+  "object": "page",
+  "entry": [
+    {
+      "id": "1234",
+      "time": 1522564259755,
+      "messaging": [
+        {
+          "recipient": {
+            "id": "1234"
+          },
+          "timestamp": 1522564259755,
+          "sender": {
+            "id": "1415373448519816"
+          },
+          "postback": {
+            "payload": "MY_SUBSCRIPTIONS",
+            "title": "My Subscriptions"
+          }
+        }
+      ]
+    }
+  ]
+}

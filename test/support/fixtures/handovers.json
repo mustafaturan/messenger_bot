@@ -1,0 +1,59 @@
+{
+  "object": "page",
+  "entry": [
+    {
+      "id": "1234",
+      "time": 1518479195594,
+      "messaging": [
+        {
+          "sender":{
+            "id":"<PSID>"
+          },
+          "recipient":{
+            "id":"1234"
+          },
+          "timestamp":1458692752478,
+          "pass_thread_control":{
+            "new_owner_app_id":"123456789",
+            "metadata":"Additional content that the caller wants to set"
+          }
+        },
+        {
+          "sender":{
+            "id":"<USER_ID>"
+          },
+          "recipient":{
+            "id":"<PSID>"
+          },
+          "timestamp":1458692752478,
+          "take_thread_control":{
+            "previous_owner_app_id":"123456789",
+            "metadata":"additional content that the caller wants to set"
+          }
+        },
+        {
+          "sender":{
+            "id":"<USER_ID>"
+          },
+          "recipient":{
+            "id":"<PSID>"
+          },
+          "timestamp":1458692752478,
+          "request_thread_control":{
+            "requested_owner_app_id":123456789,
+            "metadata":"additional content that the caller wants to set"
+          }
+        },
+        {
+          "recipient":{
+            "id":"<PSID>"
+          },
+          "timestamp":1458692752478,
+          "app_roles":{
+            "123456789":["primary_receiver"]
+          }
+        }
+      ]
+    }
+  ]
+}

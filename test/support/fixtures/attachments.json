@@ -1,0 +1,32 @@
+{
+  "object": "page",
+  "entry": [
+    {
+      "id": "1234",
+      "time": 1518479195594,
+      "messaging": [
+        {
+          "sender": {
+            "id": "<PSID>"
+          },
+          "recipient": {
+            "id": "1234"
+          },
+          "timestamp": 1518479195308,
+          "message": {
+            "mid": "mid.$cAAJdkrCd2ORnva8ErFhjGm0X_Q_c",
+            "seq": 42181,
+            "attachments": [
+              {
+                "type": "<image|video|audio|file>",
+                "payload": {
+                  "url": "<ATTACHMENT_URL>"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
