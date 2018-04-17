@@ -1,5 +1,12 @@
 # MessengerBot
 
+[![Build Status](https://travis-ci.org/mustafaturan/messenger_bot.svg?branch=master)](https://travis-ci.org/mustafaturan/messenger_bot)
+[![Hex.pm](https://img.shields.io/hexpm/v/messenger_bot.svg)](http://hex.pm/packages/messenger_bot)
+[![Hex.pm](https://img.shields.io/hexpm/dt/messenger_bot.svg)](https://hex.pm/packages/messenger_bot)
+[![Hex.pm](https://img.shields.io/hexpm/dw/messenger_bot.svg)](https://hex.pm/packages/messenger_bot)
+[![codecov](https://codecov.io/gh/musafaturan/messenger_bot/branch/master/graph/badge.svg)](https://codecov.io/gh/mustafaturan/messenger_bot)
+[![Inline docs](http://inch-ci.org/github/mustafaturan/messenger_bot.svg)](http://inch-ci.org/github/mustafaturan/messenger_bot)
+
 Unofficial Facebook Messenger Platform *chatbot client* and *webhook handler*
 
 MessengerBot covers majority of the functions to make calls to Facebook Messenger Platform endpoints.
@@ -12,7 +19,7 @@ The package can be installed by adding `messenger_bot` to your list of dependenc
 
 ```elixir
 def deps do
-  [{:messenger_bot, "1.0.0-beta10"}]
+  [{:messenger_bot, "1.0.0-rc.1"}]
 end
 ```
 
@@ -27,8 +34,6 @@ If you are using the app for a single page, `config.exs` seems to be right place
 *Note:* `App` and `Page` keys must be atom() type like in the examples. For `config.exs` you can add apps and pages like below:
 
 ```elixir
-alias MessengerBot.Model.{App, Page}
-
 config :messenger_bot,
   pages: %{
     "1881" => %{
