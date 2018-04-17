@@ -686,4 +686,18 @@ defmodule MessengerBotTest do
                     )
     end
   end
+
+  test ".set_nlp_configs" do
+    params = %{nlp_enabled: true, custom_token: "<WITAITOKEN>"}
+
+    with_mock Client, [rpost: fn(_, _, _) -> {:ok, %{}} end] do
+      MessengerBot.set_nlp_configs({@app_id, @page_id}, params, @tx_id)
+
+      assert called Client.rpost(
+                      "/me/nlp_configs",
+                      params,
+                      {@app_id, @page_id, :mb_set_nlp_configs, @tx_id}
+                    )
+    end
+  end
 end

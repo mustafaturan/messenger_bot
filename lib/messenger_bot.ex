@@ -1024,6 +1024,30 @@ defmodule MessengerBot do
   end
 
   ############################################################################
+  # NLP Configs API                                                          #
+  ############################################################################
+
+  @doc """
+  NLP Configs API / nlp_configs
+
+  ## Examples
+
+      iex> params = %{nlp_enabled: true, custom_token: "<WITAITOKEN>"}
+      iex> MessengerBot.set_nlp_configs({"<AppID>", "<PageID>"}, params)
+      {:ok, %{"success" => true}}
+
+  """
+  @spec set_nlp_configs(page_ref(), Map.t()) :: res()
+  @spec set_nlp_configs(page_ref(), Map.t(), tx_id()) :: res()
+  def set_nlp_configs({app_id, page_id}, params, tx_id \\ nil) do
+    Client.rpost(
+      "/me/nlp_configs",
+      params,
+      {app_id, page_id, :mb_set_nlp_configs, tx_id}
+    )
+  end
+
+  ############################################################################
   # PRIVATE                                                                  #
   ############################################################################
 
