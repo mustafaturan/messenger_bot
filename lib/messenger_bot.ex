@@ -1048,6 +1048,48 @@ defmodule MessengerBot do
   end
 
   ############################################################################
+  # Subscribed Apps API                                                      #
+  ############################################################################
+
+  @doc """
+  Subscribed Apps API / create subscribed_apps
+
+  ## Examples
+
+      iex> MessengerBot.subscribe_to_page_webhooks({"<AppID>", "<PageID>"})
+      {:ok, %{"success" => true}}
+
+  """
+  @spec subscribe_to_page_webhooks(page_ref()) :: res()
+  @spec subscribe_to_page_webhooks(page_ref(), tx_id()) :: res()
+  def subscribe_to_page_webhooks({app_id, page_id}, tx_id \\ nil) do
+    Client.rpost(
+      "/#{page_id}/subscribed_apps",
+      nil,
+      {app_id, page_id, :mb_subscribe_to_page_webhooks, tx_id}
+    )
+  end
+
+  @doc """
+  Subscribed Apps API / delete subscribed_apps
+
+  ## Examples
+
+      iex> MessengerBot.unsubscribe_to_page_webhooks({"<AppID>", "<PageID>"})
+      {:ok, %{"success" => true}}
+
+  """
+  @spec unsubscribe_to_page_webhooks(page_ref()) :: res()
+  @spec unsubscribe_to_page_webhooks(page_ref(), tx_id()) :: res()
+  def unsubscribe_to_page_webhooks({app_id, page_id}, tx_id \\ nil) do
+    Client.rdelete(
+      "/#{page_id}/subscribed_apps",
+      nil,
+      {app_id, page_id, :mb_unsubscribe_to_page_webhooks, tx_id}
+    )
+  end
+
+  ############################################################################
   # PRIVATE                                                                  #
   ############################################################################
 

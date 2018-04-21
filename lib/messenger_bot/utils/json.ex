@@ -1,7 +1,6 @@
 defmodule MessengerBot.Util.JSON do
   @moduledoc false
 
-  @regexp ~r/((,?)\"__struct__\":\"([^\"]+)\"(,?))|(\"([^\"]+)\":\"nil\"(,?))/
   @decode_opts [:return_maps]
 
   alias :jiffy, as: Jiffy
@@ -10,8 +9,12 @@ defmodule MessengerBot.Util.JSON do
   Encode
   """
   @spec encode(any) :: {:ok, Strint.t()} | {:error, tuple()}
+  def encode(nil) do
+    {:ok, nil}
+  end
+
   def encode(payload) do
-    {:ok, Regex.replace(@regexp, Jiffy.encode(payload), "")}
+    {:ok, Jiffy.encode(payload)}
   catch
     {:error, reason} -> {:error, reason}
   end

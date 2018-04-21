@@ -64,6 +64,8 @@ config :event_bus,
     :mb_unlink_account_succeeded,
     :mb_fetch_user_profile_succeeded,
     :mb_set_nlp_configs_succeeded,
+    :mb_subscribe_to_page_webhooks_succeeded,
+    :mb_unsubscribe_to_page_webhooks_succeeded,
     ##########################################################################
     :mb_attachment_upload_failed,
     :mb_create_message_creatives_failed,
@@ -89,6 +91,8 @@ config :event_bus,
     :mb_unlink_account_failed,
     :mb_fetch_user_profile_failed,
     :mb_set_nlp_configs_failed,
+    :mb_subscribe_to_page_webhooks_failed,
+    :mb_unsubscribe_to_page_webhooks_failed,
     ##########################################################################
     :mb_attachment_upload_erred,
     :mb_create_message_creatives_erred,
@@ -114,6 +118,8 @@ config :event_bus,
     :mb_unlink_account_erred,
     :mb_fetch_user_profile_erred,
     :mb_set_nlp_configs_erred,
+    :mb_subscribe_to_page_webhooks_erred,
+    :mb_unsubscribe_to_page_webhooks_erred,
     ##########################################################################
     # Test topics
     ##########################################################################

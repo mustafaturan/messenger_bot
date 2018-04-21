@@ -700,4 +700,28 @@ defmodule MessengerBotTest do
                     )
     end
   end
+
+  test ".subscribe_to_page_webhooks" do
+    with_mock Client, [rpost: fn(_, _, _) -> {:ok, %{}} end] do
+      MessengerBot.subscribe_to_page_webhooks({@app_id, @page_id}, @tx_id)
+
+      assert called Client.rpost(
+                      "/#{@page_id}/subscribed_apps",
+                      nil,
+                      {@app_id, @page_id, :mb_subscribe_to_page_webhooks, @tx_id}
+                    )
+    end
+  end
+
+  test ".unsubscribe_to_page_webhooks" do
+    with_mock Client, [rdelete: fn(_, _, _) -> {:ok, %{}} end] do
+      MessengerBot.unsubscribe_to_page_webhooks({@app_id, @page_id}, @tx_id)
+
+      assert called Client.rdelete(
+                      "/#{@page_id}/subscribed_apps",
+                      nil,
+                      {@app_id, @page_id, :mb_unsubscribe_to_page_webhooks, @tx_id}
+                    )
+    end
+  end
 end
