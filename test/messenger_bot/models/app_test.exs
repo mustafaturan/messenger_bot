@@ -5,7 +5,7 @@ defmodule MessengerBot.Model.AppTest do
   doctest App
 
   test "keys" do
-    expected_keys = [:__struct__, :access_token, :id, :metadata, :name, :secret, :setup_token]
+    expected_keys = [:__struct__, :access_token, :access_token_expires_at, :id, :metadata, :name, :secret, :setup_token]
     assert Map.keys(%App{id: nil, secret: nil, setup_token: nil}) == expected_keys
   end
 end

@@ -5,7 +5,7 @@ defmodule MessengerBot.Model.PageTest do
   doctest Page
 
   test "keys" do
-    expected_keys = [:__struct__, :access_token, :app_id, :id, :metadata, :name, :token_expires_at]
+    expected_keys = [:__struct__, :access_token, :access_token_expires_at, :app_id, :id, :metadata, :name]
     assert Map.keys(%Page{id: nil, access_token: nil}) == expected_keys
   end
 end

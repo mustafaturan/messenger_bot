@@ -4,7 +4,7 @@ defmodule MessengerBot.Model.App do
   """
 
   @enforce_keys [:id, :secret, :setup_token]
-  defstruct [:access_token, :id, :metadata, :name, :secret, :setup_token]
+  defstruct [:access_token, :access_token_expires_at, :id, :metadata, :name, :secret, :setup_token]
 
   @type t :: %__MODULE__{
           id: String.t(),
@@ -12,6 +12,7 @@ defmodule MessengerBot.Model.App do
           secret: String.t(),
           setup_token: String.t(),
           access_token: String.t(),
-          metadata: any()
+          access_token_expires_at: integer(),
+          metadata: Map.t()
         }
 end
