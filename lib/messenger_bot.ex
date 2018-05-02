@@ -227,7 +227,7 @@ defmodule MessengerBot do
   def delete_custom_label({app_id, page_id}, label_id, tx_id \\ nil) do
     Client.rdelete(
       "/#{label_id}",
-      nil,
+      %{},
       {app_id, page_id, :mb_delete_custom_label, tx_id}
     )
   end
@@ -1065,7 +1065,7 @@ defmodule MessengerBot do
   def subscribe_to_page_webhooks({app_id, page_id}, tx_id \\ nil) do
     Client.rpost(
       "/#{page_id}/subscribed_apps",
-      nil,
+      %{},
       {app_id, page_id, :mb_subscribe_to_page_webhooks, tx_id}
     )
   end
@@ -1084,7 +1084,7 @@ defmodule MessengerBot do
   def unsubscribe_to_page_webhooks({app_id, page_id}, tx_id \\ nil) do
     Client.rdelete(
       "/#{page_id}/subscribed_apps",
-      nil,
+      %{},
       {app_id, page_id, :mb_unsubscribe_to_page_webhooks, tx_id}
     )
   end

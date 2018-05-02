@@ -16,6 +16,8 @@ defmodule MessengerBot.Web.Plug.Transaction do
 
   @doc false
   def call(conn, _opts) do
-    Conn.put_private(conn, :tx_id, UUID.uuid4())
+    tx_id = Conn.get_req_header(conn, "x-request-id")
+    tx_id = if length(tx_id) == 0, do: UUID.uuid4(), else: List.first(tx_id)
+    Conn.put_private(conn, :tx_id, tx_id)
   end
 end

@@ -41,7 +41,7 @@ defmodule MessengerBot.Web.Plug.EventBus do
 
   defp data(conn) do
     %{
-      app_id: conn.private[:app_id],
+      app_id: Map.get(Map.get(conn.private, :app, %{}), :id),
       request: prepare_request(conn),
       response: prepare_response(conn)
     }

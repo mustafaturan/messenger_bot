@@ -102,9 +102,9 @@ Add webhook endpoints to your router:
 forward "/some-path-for-messenger_bot", to: MessengerBot.Web.Router
 
 # The code above will add following routes
-# -> GET   /some-path-for-messenger_bot/:app_id (200)
-# -> POST  /some-path-for-messenger_bot/:app_id (200)
-# -> MATCH /some-path-for-messenger_bot/:any (404)
+# -> GET   /some-path-for-messenger_bot/:app_id (Possible HTTP status codes: 200, 401, 404, 422, 500)
+# -> POST  /some-path-for-messenger_bot/:app_id (Possible HTTP status codes: 200, 401, 404, 422, 500)
+# -> MATCH /some-path-for-messenger_bot/:any (Possible HTTP status code: 404)
 ```
 
 ### Event Topics Configuration

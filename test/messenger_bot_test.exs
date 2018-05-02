@@ -115,7 +115,7 @@ defmodule MessengerBotTest do
 
       assert called Client.rdelete(
                       "/#{label_id}",
-                      nil,
+                      %{},
                       {@app_id, @page_id, :mb_delete_custom_label, @tx_id}
                     )
     end
@@ -707,7 +707,7 @@ defmodule MessengerBotTest do
 
       assert called Client.rpost(
                       "/#{@page_id}/subscribed_apps",
-                      nil,
+                      %{},
                       {@app_id, @page_id, :mb_subscribe_to_page_webhooks, @tx_id}
                     )
     end
@@ -719,7 +719,7 @@ defmodule MessengerBotTest do
 
       assert called Client.rdelete(
                       "/#{@page_id}/subscribed_apps",
-                      nil,
+                      %{},
                       {@app_id, @page_id, :mb_unsubscribe_to_page_webhooks, @tx_id}
                     )
     end

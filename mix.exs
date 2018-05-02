@@ -6,7 +6,7 @@ defmodule MessengerBot.Mixfile do
   def project do
     [
       app: :messenger_bot,
-      version: "1.0.0-rc.1",
+      version: "1.0.0-rc.5",
       elixir: "~> 1.5",
       elixirc_paths: elixirc_paths(Mix.env()),
       build_embedded: Mix.env() == :prod,
@@ -37,7 +37,7 @@ defmodule MessengerBot.Mixfile do
       {:plug, "~> 1.5"},
       {:tesla, "1.0.0-beta.1"},
       {:uuid, "~> 1.1"},
-      {:event_bus, "~> 1.2"},
+      {:event_bus, "~> 1.3"},
       {:jiffy, "~> 0.15.1"},
       {:mock, "~> 0.3.1", only: [:test]},
       {:credo, "~> 0.9.1", only: [:dev], runtime: false},
