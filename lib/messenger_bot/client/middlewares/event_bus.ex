@@ -2,7 +2,7 @@ defmodule MessengerBot.Client.Middleware.EventBus do
   @moduledoc false
 
   ############################################################################
-  # Tesla Middleware implementation for EventBust notifications              #
+  # Tesla Middleware implementation for EventBus notifications               #
   ############################################################################
 
   alias EventBus.Model.Event

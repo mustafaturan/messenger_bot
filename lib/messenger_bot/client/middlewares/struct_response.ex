@@ -2,7 +2,7 @@ defmodule MessengerBot.Client.Middleware.StructResponse do
   @moduledoc false
 
   ############################################################################
-  # Tesla Middleware implementation for EventBust notifications              #
+  # Tesla Middleware implementation to structure the response                #
   ############################################################################
 
   @behaviour Tesla.Middleware
