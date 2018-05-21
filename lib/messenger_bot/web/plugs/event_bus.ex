@@ -2,7 +2,7 @@ defmodule MessengerBot.Web.Plug.EventBus do
   @moduledoc false
 
   ############################################################################
-  # Plug implementation to identify Facebook App                             #
+  # Plug implementation for EventBus notifications                           #
   ############################################################################
 
   alias Plug.Conn
