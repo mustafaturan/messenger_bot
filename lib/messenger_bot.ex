@@ -108,7 +108,7 @@ defmodule MessengerBot do
   ############################################################################
 
   @doc """
-  Broadcast API / create_message_creatives
+  Broadcast API / message_creatives
 
   ## Examples
 
@@ -121,7 +121,7 @@ defmodule MessengerBot do
   @spec create_message_creative(page_ref(), list(Map.t()), tx_id()) :: res()
   def create_message_creative({app_id, page_id}, messages, tx_id \\ nil) do
     Client.rpost(
-      "/me/create_message_creatives",
+      "/me/message_creatives",
       %{messages: messages},
       {app_id, page_id, :mb_create_message_creatives, tx_id}
     )

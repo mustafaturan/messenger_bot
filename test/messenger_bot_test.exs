@@ -28,7 +28,7 @@ defmodule MessengerBotTest do
       MessengerBot.create_message_creative({@app_id, @page_id}, messages, @tx_id)
 
       assert called Client.rpost(
-                      "/me/create_message_creatives",
+                      "/me/message_creatives",
                       %{messages: messages},
                       {@app_id, @page_id, :mb_create_message_creatives, @tx_id}
                     )
