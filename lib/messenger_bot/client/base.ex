@@ -7,6 +7,7 @@ defmodule MessengerBot.Client.Base do
 
   use Tesla, only: ~w(get post delete)a
   alias MessengerBot.Util.JSON
+  alias MessengerBot.Util.String, as: StringUtil
 
   plug Tesla.Middleware.BaseUrl, "https://graph.facebook.com"
   plug MessengerBot.Client.Middleware.BearerAuth
@@ -54,6 +55,6 @@ defmodule MessengerBot.Client.Base do
   end
 
   defp unique_id do
-    UUID.uuid4()
+    StringUtil.unique_id()
   end
 end

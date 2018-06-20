@@ -1,10 +1,14 @@
 # This file is responsible for configuring your application
 # and its dependencies with the aid of the Mix.Config module.
 use Mix.Config
+alias MessengerBot.Util.String, as: MessengerBotStringUtil
 
 import_config "#{Mix.env()}.exs"
 
 config :event_bus,
+  ttl: 900_000_000,
+  time_unit: :micro_seconds,
+  id_generator: MessengerBotStringUtil,
   topics: [
     ##########################################################################
     # Webserver Topics

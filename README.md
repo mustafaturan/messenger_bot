@@ -107,12 +107,15 @@ forward "/some-path-for-messenger_bot", to: MessengerBot.Web.Router
 # -> MATCH /some-path-for-messenger_bot/:any (Possible HTTP status code: 404)
 ```
 
-### Event Topics Configuration
+### EventBus Configuration
 
-Update your `config.exs` to add `messenger_bot` event topics for `event_bus`:
+Update your `config.exs` to add `messenger_bot` event topics and id generator for `event_bus`:
 
 ```elixir
 config :event_bus,
+  ttl: 900_000_000,
+  time_unit: :micro_seconds,
+  id_generator: MessengerBot.Util.String,
   topics: [
     ##########################################################################
     # Webserver Topics

@@ -7,6 +7,7 @@ defmodule MessengerBot.Client.Middleware.EventBus do
 
   alias EventBus.Model.Event
   alias MessengerBot.Config
+  alias MessengerBot.Util.String, as: StringUtil
 
   @behaviour Tesla.Middleware
   @base_url "https://graph.facebook.com"
@@ -76,6 +77,6 @@ defmodule MessengerBot.Client.Middleware.EventBus do
   end
 
   defp unique_id do
-    UUID.uuid4()
+    StringUtil.unique_id()
   end
 end

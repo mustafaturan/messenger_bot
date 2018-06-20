@@ -6,6 +6,7 @@ defmodule MessengerBot.Web.Plug.Transaction do
   ############################################################################
 
   alias Plug.Conn
+  alias MessengerBot.Util.String, as: StringUtil
 
   @behaviour Plug
 
@@ -17,7 +18,11 @@ defmodule MessengerBot.Web.Plug.Transaction do
   @doc false
   def call(conn, _opts) do
     tx_id = Conn.get_req_header(conn, "x-request-id")
-    tx_id = if length(tx_id) == 0, do: UUID.uuid4(), else: List.first(tx_id)
+    tx_id = if length(tx_id) == 0, do: unique_id(), else: List.first(tx_id)
     Conn.put_private(conn, :tx_id, tx_id)
+  end
+
+  defp unique_id do
+    StringUtil.unique_id()
   end
 end

@@ -8,6 +8,7 @@ defmodule MessengerBot.Web.Plug.EventBus do
   alias Plug.Conn
   alias EventBus.Model.Event
   alias MessengerBot.Config
+  alias MessengerBot.Util.String, as: StringUtil
 
   @behaviour Plug
 
@@ -85,7 +86,7 @@ defmodule MessengerBot.Web.Plug.EventBus do
   end
 
   defp unique_id do
-    UUID.uuid4()
+    StringUtil.unique_id()
   end
 
   defp now do

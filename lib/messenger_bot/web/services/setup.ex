@@ -4,7 +4,7 @@ defmodule MessengerBot.Web.Service.Setup do
   """
 
   use EventBus.EventSource
-  alias MessengerBot.Config
+  alias MessengerBot.Util.String, as: StringUtil
 
   @type messenger_webhook_setup_params :: %{
           String.t() => String.t(),
@@ -23,9 +23,7 @@ defmodule MessengerBot.Web.Service.Setup do
   """
   @spec run(app(), messenger_webhook_setup_params()) :: res()
   def run(%{id: app_id, setup_token: setup_token}, params) do
-    id = unique_id()
-
-    EventSource.notify %{id: id, transaction_id: id, topic: @topic, ttl: Config.eb_ttl()} do
+    EventSource.notify %{transaction_id: unique_id(), topic: @topic} do
       {status, params} = verify_token(verify_params(params), setup_token)
       {status, Map.put(params, :app_id, app_id)}
     end
@@ -53,6 +51,6 @@ defmodule MessengerBot.Web.Service.Setup do
   end
 
   defp unique_id do
-    UUID.uuid4()
+    StringUtil.unique_id()
   end
 end

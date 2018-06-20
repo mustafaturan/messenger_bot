@@ -4,7 +4,6 @@ defmodule MessengerBot.Web.Service.Callback do
   """
 
   use EventBus.EventSource
-  alias MessengerBot.Config
   alias MessengerBot.Util.JSON
 
   @doc """
@@ -129,14 +128,8 @@ defmodule MessengerBot.Web.Service.Callback do
 
   defp init_event_params(topic, transaction_id) do
     %{
-      id: unique_id(),
       topic: topic,
-      transaction_id: transaction_id,
-      ttl: Config.eb_ttl()
+      transaction_id: transaction_id
     }
-  end
-
-  defp unique_id do
-    UUID.uuid4()
   end
 end
