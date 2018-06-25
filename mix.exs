@@ -35,7 +35,7 @@ defmodule MessengerBot.Mixfile do
   defp deps do
     [
       {:plug, "~> 1.5"},
-      {:tesla, "1.0.0-beta.1"},
+      {:tesla, "~> 1.0"},
       {:uuid, "~> 1.1"},
       {:event_bus, "~> 1.3"},
       {:jiffy, "~> 0.15.1"},
