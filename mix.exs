@@ -6,7 +6,7 @@ defmodule MessengerBot.Mixfile do
   def project do
     [
       app: :messenger_bot,
-      version: "1.0.0-rc.8",
+      version: "1.0.0",
       elixir: "~> 1.5",
       elixirc_paths: elixirc_paths(Mix.env()),
       build_embedded: Mix.env() == :prod,
