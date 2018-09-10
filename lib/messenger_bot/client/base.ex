@@ -6,6 +6,7 @@ defmodule MessengerBot.Client.Base do
   ############################################################################
 
   use Tesla, only: ~w(get post delete)a
+
   alias MessengerBot.Util.JSON
   alias MessengerBot.Util.String, as: StringUtil
 

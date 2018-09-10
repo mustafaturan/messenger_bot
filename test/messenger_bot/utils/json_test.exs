@@ -1,6 +1,8 @@
 defmodule MessengerBot.Util.JSONTest do
   use ExUnit.Case
+
   alias MessengerBot.Util.JSON
+
   doctest JSON
 
   test ".encode nil" do

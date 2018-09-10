@@ -7,7 +7,7 @@ import_config "#{Mix.env()}.exs"
 
 config :event_bus,
   ttl: 900_000_000,
-  time_unit: :micro_seconds,
+  time_unit: :microsecond,
   id_generator: MessengerBotStringUtil,
   topics: [
     ##########################################################################

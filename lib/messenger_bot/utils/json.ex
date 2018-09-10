@@ -8,7 +8,7 @@ defmodule MessengerBot.Util.JSON do
   @doc """
   Encode
   """
-  @spec encode(any) :: {:ok, Strint.t()} | {:error, tuple()}
+  @spec encode(any) :: {:ok, String.t()} | {:error, tuple()}
   def encode(nil) do
     {:ok, nil}
   end

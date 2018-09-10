@@ -40,11 +40,13 @@ defmodule MessengerBot.Web.Plug.MaxBodyLength do
     end
   end
 
-  defp assign_body({:ok, {conn, body}}) do
-    Conn.put_private(conn, :body, body)
-  end
+  defp assign_body({status, {conn, body}}) do
+    case status do
+      :ok ->
+        Conn.put_private(conn, :body, body)
 
-  defp assign_body({:error, {conn, nil}}) do
-    conn
+      :error ->
+        conn
+    end
   end
 end

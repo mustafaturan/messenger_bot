@@ -90,6 +90,6 @@ defmodule MessengerBot.Web.Plug.EventBus do
   end
 
   defp now do
-    System.os_time(:microseconds)
+    System.os_time(:microsecond)
   end
 end

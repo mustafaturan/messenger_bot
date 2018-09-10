@@ -34,10 +34,10 @@ defmodule MessengerBot.Mixfile do
 
   defp deps do
     [
-      {:plug, ">= 1.4.0"},
-      {:tesla, ">= 1.0.0"},
-      {:uuid, "~> 1.1"},
       {:event_bus, ">= 1.5.0"},
+      {:tesla, ">= 1.0.0"},
+      {:plug, ">= 1.4.0"},
+      {:uuid, "~> 1.1"},
       {:jiffy, "~> 0.15"},
       {:mock, "~> 0.3", only: [:test]},
       {:credo, "~> 0.10", only: [:dev], runtime: false},

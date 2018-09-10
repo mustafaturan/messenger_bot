@@ -4,26 +4,29 @@ defmodule MessengerBot.Web.Service.Callback do
   """
 
   use EventBus.EventSource
+
   alias MessengerBot.Util.JSON
 
   @doc """
   Process messaging webhooks coming from Facebook Messenger Platform
   """
-  @spec run(integer(), String.t(), String.t()) :: :ok
+  @spec run(String.t(), String.t(), String.t()) :: :ok
   def run(app_id, payload, transaction_id) do
     {:ok, payload} = JSON.decode(payload)
 
-    for entry <- payload["entry"] do
+    Enum.each(payload["entry"], fn entry ->
       process_entry(transaction_id, {app_id, entry})
-    end
+    end)
 
     :ok
   end
 
   defp process_entry(transaction_id, {app_id, %{"messaging" => messagings, "time" => time, "id" => page_id}}) do
-    for messaging <- messagings do
+    Enum.each(messagings, fn messaging ->
       process_messaging(transaction_id, {app_id, page_id, time, messaging})
-    end
+    end)
+
+    :ok
   end
 
   defp process_entry(transaction_id, {app_id, %{"standby" => standby, "time" => time, "id" => page_id}}) do
@@ -32,14 +35,19 @@ defmodule MessengerBot.Web.Service.Callback do
     EventSource.notify params do
       %{app_id: app_id, standby: standby, page_id: page_id, time: time}
     end
+
+    :ok
   end
 
   defp process_messaging(transaction_id, {app_id, page_id, time, messaging}) do
-    params = init_event_params(fetch_topic(messaging), transaction_id)
+    topic = fetch_topic(messaging)
+    params = init_event_params(topic, transaction_id)
 
     EventSource.notify params do
       %{app_id: app_id, messaging: messaging, page_id: page_id, time: time}
     end
+
+    :ok
   end
 
   defp fetch_topic(%{"delivery" => _}) do

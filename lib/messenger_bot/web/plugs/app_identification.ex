@@ -7,6 +7,7 @@ defmodule MessengerBot.Web.Plug.AppIdentification do
 
   alias Plug.Conn
   alias MessengerBot.Config
+  alias MessengerBot.Model.App
   alias MessengerBot.Web.Renderer
 
   @behaviour Plug
@@ -19,7 +20,7 @@ defmodule MessengerBot.Web.Plug.AppIdentification do
   @doc false
   def call(conn, _) do
     case app(conn.path_info) do
-      %{id: _} = app ->
+      %App{id: _} = app ->
         Conn.put_private(conn, :app, app)
 
       _ ->

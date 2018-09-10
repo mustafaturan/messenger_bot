@@ -2,12 +2,15 @@ defmodule MessengerBot.Web.Controller.Messenger do
   @moduledoc false
 
   import MessengerBot.Web.Controller.Base
+
+  alias Plug.Conn
   alias MessengerBot.Web.Renderer
   alias MessengerBot.Web.Service.{Callback, Setup}
 
   @doc """
   Facebook Messenger Platform Setup handler
   """
+  @spec setup(Conn.t()) :: no_return()
   def setup(conn) do
     case run_setup(conn) do
       {:ok, %{"hub.challenge" => challenge}} ->
@@ -35,6 +38,7 @@ defmodule MessengerBot.Web.Controller.Messenger do
   # PRIVATE                                                                  #
   ############################################################################
 
+  @spec run_setup(Conn.t()) :: no_return()
   defp run_setup(conn) do
     app = Map.get(conn.private, :app)
     Setup.run(app, query_params(conn))

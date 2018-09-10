@@ -4,6 +4,7 @@ defmodule MessengerBot.Web.Service.Setup do
   """
 
   use EventBus.EventSource
+
   alias MessengerBot.Util.String, as: StringUtil
 
   @type messenger_webhook_setup_params :: %{
@@ -21,12 +22,18 @@ defmodule MessengerBot.Web.Service.Setup do
   @doc """
   Process setup webhooks coming from Facebook Messenger Platform
   """
-  @spec run(app(), messenger_webhook_setup_params()) :: res()
+  @spec run(app(), messenger_webhook_setup_params()) :: no_return()
   def run(%{id: app_id, setup_token: setup_token}, params) do
-    EventSource.notify %{transaction_id: unique_id(), topic: @topic} do
-      {status, params} = verify_token(verify_params(params), setup_token)
-      {status, Map.put(params, :app_id, app_id)}
-    end
+    transaction_id = unique_id()
+    event_params   = %{transaction_id: transaction_id, topic: @topic}
+
+    {status, params} =
+      EventSource.notify event_params do
+        verified_params = verify_params(params)
+        verify_token(verified_params, setup_token)
+      end
+
+    {status, Map.put(params, :app_id, app_id)}
   end
 
   defp verify_params(%{"hub.challenge" => _, "hub.mode" => _, "hub.verify_token" => _} = params) do

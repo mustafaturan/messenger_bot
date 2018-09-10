@@ -36,7 +36,7 @@ defmodule MessengerBot.Client.Middleware.EventBus do
   defp init_params do
     %{
       id: unique_id(),
-      initialized_at: System.os_time(:microseconds),
+      initialized_at: System.os_time(:microsecond),
       source: "MessengerBot.Client"
     }
   end
