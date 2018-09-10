@@ -1,9 +1,11 @@
 defmodule MessengerBot.Web.RouterTest do
   use ExUnit.Case, async: true
   use Plug.Test
+
   import Mock
-  alias MessengerBot.Web.{Router, Renderer}
+
   alias MessengerBot.Web.Controller.Messenger
+  alias MessengerBot.Web.{Renderer, Router}
 
   @app_id "1881"
 

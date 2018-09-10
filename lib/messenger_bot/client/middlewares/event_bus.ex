@@ -42,15 +42,15 @@ defmodule MessengerBot.Client.Middleware.EventBus do
   end
 
   defp topic(eb_topic, {:ok, %{status: 200}}) do
-    :"#{eb_topic}_succeeded"
+    String.to_atom("#{eb_topic}_succeeded")
   end
 
   defp topic(eb_topic, {:ok, _}) do
-    :"#{eb_topic}_failed"
+    String.to_atom("#{eb_topic}_failed")
   end
 
   defp topic(eb_topic, {:error, _}) do
-    :"#{eb_topic}_erred"
+    String.to_atom("#{eb_topic}_erred")
   end
 
   defp data(request, response) do

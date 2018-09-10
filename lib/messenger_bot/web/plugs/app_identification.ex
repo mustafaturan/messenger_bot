@@ -5,10 +5,10 @@ defmodule MessengerBot.Web.Plug.AppIdentification do
   # Plug implementation to identify Facebook App                             #
   ############################################################################
 
-  alias Plug.Conn
   alias MessengerBot.Config
   alias MessengerBot.Model.App
   alias MessengerBot.Web.Renderer
+  alias Plug.Conn
 
   @behaviour Plug
 

@@ -1,8 +1,10 @@
 defmodule MessengerBot.Web.Plug.AppAuthenticationTest do
   use ExUnit.Case, async: false
+
   alias Plug.Conn
-  alias MessengerBot.ConnHelper
+
   alias MessengerBot.Config
+  alias MessengerBot.ConnHelper
   alias MessengerBot.Web.Plug.AppAuthentication
 
   doctest AppAuthentication

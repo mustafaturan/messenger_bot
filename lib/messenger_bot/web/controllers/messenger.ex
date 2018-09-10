@@ -3,9 +3,9 @@ defmodule MessengerBot.Web.Controller.Messenger do
 
   import MessengerBot.Web.Controller.Base
 
-  alias Plug.Conn
   alias MessengerBot.Web.Renderer
   alias MessengerBot.Web.Service.{Callback, Setup}
+  alias Plug.Conn
 
   @doc """
   Facebook Messenger Platform Setup handler

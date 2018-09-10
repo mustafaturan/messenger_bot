@@ -5,8 +5,8 @@ defmodule MessengerBot.Web.Plug.MaxBodyLength do
   # Plug implementation to extract raw request body                          #
   ############################################################################
 
-  alias Plug.Conn
   alias MessengerBot.Web.Renderer
+  alias Plug.Conn
 
   @behaviour Plug
   @max_body_length 128_000

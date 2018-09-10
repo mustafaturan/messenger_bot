@@ -1,8 +1,9 @@
 defmodule MessengerBot.Web.Plug.EventBusTest do
   use ExUnit.Case, async: false
-  alias MessengerBot.ConnHelper
-  alias MessengerBot.Config
+
   alias EventBus.Manager.Notification
+  alias MessengerBot.Config
+  alias MessengerBot.ConnHelper
   alias MessengerBot.Web.Plug.EventBus, as: EventBusPlug
 
   doctest EventBusPlug

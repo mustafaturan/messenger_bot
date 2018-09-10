@@ -5,9 +5,9 @@ defmodule MessengerBot.Web.Plug.AppAuthentication do
   # Plug implementation to verify the sha1 signature with request body       #
   ############################################################################
 
-  alias Plug.Conn
   alias MessengerBot.Util.Encryption
   alias MessengerBot.Web.Renderer
+  alias Plug.Conn
 
   @behaviour Plug
 

@@ -3,8 +3,8 @@ defmodule MessengerBot do
   MessengerBot Client
   """
 
-  alias MessengerBot.Config
   alias MessengerBot.Client.Base, as: Client
+  alias MessengerBot.Config
   alias MessengerBot.Util.Encryption
 
   @typedoc """

@@ -5,10 +5,10 @@ defmodule MessengerBot.Web.Plug.EventBus do
   # Plug implementation for EventBus notifications                           #
   ############################################################################
 
-  alias Plug.Conn
   alias EventBus.Model.Event
   alias MessengerBot.Config
   alias MessengerBot.Util.String, as: StringUtil
+  alias Plug.Conn
 
   @behaviour Plug
 

@@ -5,8 +5,8 @@ defmodule MessengerBot.Web.Plug.Transaction do
   # Plug implementation to add unique transaction identifier to each requests#
   ############################################################################
 
-  alias Plug.Conn
   alias MessengerBot.Util.String, as: StringUtil
+  alias Plug.Conn
 
   @behaviour Plug
 
@@ -18,7 +18,7 @@ defmodule MessengerBot.Web.Plug.Transaction do
   @doc false
   def call(conn, _opts) do
     tx_id = Conn.get_req_header(conn, "x-request-id")
-    tx_id = if length(tx_id) == 0, do: unique_id(), else: List.first(tx_id)
+    tx_id = if Enum.empty?(tx_id), do: unique_id(), else: List.first(tx_id)
     Conn.put_private(conn, :tx_id, tx_id)
   end
 

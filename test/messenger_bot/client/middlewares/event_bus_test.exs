@@ -1,7 +1,8 @@
 defmodule MessengerBot.Client.Middleware.EventBusTest do
   use ExUnit.Case, async: false
-  alias MessengerBot.Config
+
   alias EventBus.Manager.Notification
+  alias MessengerBot.Config
 
   @app_id "1881"
   @page_id "1234"

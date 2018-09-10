@@ -6,9 +6,10 @@ defmodule MessengerBot.Web.Router do
   ############################################################################
 
   use Plug.Router
-  alias MessengerBot.Web.Renderer
+
   alias MessengerBot.Web.Controller.Messenger
-  alias MessengerBot.Web.Plug.{MaxBodyLength, AppIdentification, AppAuthentication, Transaction, EventBus}
+  alias MessengerBot.Web.Plug.{AppAuthentication, AppIdentification, EventBus, MaxBodyLength, Transaction}
+  alias MessengerBot.Web.Renderer
 
   plug(Transaction)
   plug(EventBus)

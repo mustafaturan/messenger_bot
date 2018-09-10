@@ -1,11 +1,13 @@
 defmodule MessengerBot.Web.Controller.MessengerTest do
   use ExUnit.Case, async: false
+
   import Mock
-  alias Plug.Conn
-  alias MessengerBot.ConnHelper
+
   alias MessengerBot.Config
-  alias MessengerBot.Web.Service.{Callback, Setup}
+  alias MessengerBot.ConnHelper
   alias MessengerBot.Web.Controller.Messenger, as: MessengerController
+  alias MessengerBot.Web.Service.{Callback, Setup}
+  alias Plug.Conn
 
   doctest MessengerController
 

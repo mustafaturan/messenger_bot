@@ -7,11 +7,7 @@ defmodule MessengerBot.Web.Service.Setup do
 
   alias MessengerBot.Util.String, as: StringUtil
 
-  @type messenger_webhook_setup_params :: %{
-          String.t() => String.t(),
-          String.t() => String.t(),
-          String.t() => String.t()
-        } | Map.t()
+  @type messenger_webhook_setup_params :: Map.t()
   @type app :: Map.t()
   @type status :: :ok | :unprocessable_entity | :unauthorized
   @type res :: {status(), Map.t()}

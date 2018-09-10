@@ -1,7 +1,8 @@
 defmodule MessengerBot.Web.Service.SetupTest do
   use ExUnit.Case
-  alias MessengerBot.Web.Service.Setup
+
   alias MessengerBot.Config
+  alias MessengerBot.Web.Service.Setup
 
   doctest Setup
 

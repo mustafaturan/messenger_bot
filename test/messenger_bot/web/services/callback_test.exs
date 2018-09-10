@@ -1,8 +1,9 @@
 defmodule MessengerBot.Web.Service.CallbackTest do
   use ExUnit.Case, async: false
-  alias MessengerBot.Web.Service.Callback
-  alias MessengerBot.PayloadFixtures
+
   alias EventBus.Manager.Notification
+  alias MessengerBot.PayloadFixtures
+  alias MessengerBot.Web.Service.Callback
 
   doctest Callback
 
