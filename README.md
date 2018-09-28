@@ -19,7 +19,7 @@ The package can be installed by adding `messenger_bot` to your list of dependenc
 
 ```elixir
 def deps do
-  [{:messenger_bot, "1.1.0"}]
+  [{:messenger_bot, "1.2.0"}]
 end
 ```
 
