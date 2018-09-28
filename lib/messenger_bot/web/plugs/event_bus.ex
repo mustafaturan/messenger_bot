@@ -18,6 +18,7 @@ defmodule MessengerBot.Web.Plug.EventBus do
   end
 
   @doc false
+  @spec call(Conn.t(), atom()) :: Conn.t()
   def call(conn, topic_prefix) do
     params = init_params()
 

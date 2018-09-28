@@ -7,6 +7,7 @@ defmodule MessengerBot.Web.Plug.AppIdentification do
 
   alias MessengerBot.Config
   alias MessengerBot.Model.App
+  alias MessengerBot.Model.Error
   alias MessengerBot.Web.Renderer
   alias Plug.Conn
 
@@ -24,7 +25,8 @@ defmodule MessengerBot.Web.Plug.AppIdentification do
         Conn.put_private(conn, :app, app)
 
       _ ->
-        Renderer.send_error(conn, {:not_found, %{app: "not found"}})
+        error = %Error{code: :not_found, details: %{app: "not found"}}
+        Renderer.send_error(conn, error)
     end
   end
 

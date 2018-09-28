@@ -6,6 +6,7 @@ defmodule MessengerBot.Client.Middleware.EventBus do
   ############################################################################
 
   alias EventBus.Model.Event
+  alias EventBus.Util.MonotonicTime
   alias MessengerBot.Config
   alias MessengerBot.Util.String, as: StringUtil
 
@@ -36,7 +37,7 @@ defmodule MessengerBot.Client.Middleware.EventBus do
   defp init_params do
     %{
       id: unique_id(),
-      initialized_at: System.os_time(:microsecond),
+      initialized_at: MonotonicTime.now(),
       source: "MessengerBot.Client"
     }
   end

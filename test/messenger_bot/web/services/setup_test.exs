@@ -2,11 +2,14 @@ defmodule MessengerBot.Web.Service.SetupTest do
   use ExUnit.Case
 
   alias MessengerBot.Config
+  alias MessengerBot.Model.Error
   alias MessengerBot.Web.Service.Setup
+  alias MessengerBot.Web.Service.Setup.Params
 
   doctest Setup
 
   @app_id "1881"
+  @transaction_id "xyz"
 
   setup do
     {:ok, app: Config.app(@app_id)}
@@ -18,14 +21,24 @@ defmodule MessengerBot.Web.Service.SetupTest do
       "hub.mode" => "subscribe",
       "hub.verify_token" => app.setup_token
     }
-    result = Setup.run(app, params)
-    assert result == {:ok, Map.put(params, :app_id, app.id)}
+    expected_payload = %Params{
+      app_id: "1881",
+      challenge: "icebucket",
+      mode: "subscribe",
+      verify_token: app.setup_token
+    }
+    result = Setup.run(app, params, @transaction_id)
+    assert result == {:ok, expected_payload}
   end
 
   test "#run with missing params", %{app: app} do
-    result = Setup.run(app, %{"hub.mode" => "", "hub.verify_token" => ""})
-    expected_payload = %{missing_params: ["hub.challenge"], app_id: app.id}
-    assert result == {:unprocessable_entity, expected_payload}
+    expected_payload = %Error{
+      app_id: @app_id,
+      code: :unprocessable_entity,
+      details: %{missing_params: ["hub.challenge", "hub.verify_token"]}
+    }
+    result = Setup.run(app, %{"hub.mode" => ""}, @transaction_id)
+    assert result == {:error, expected_payload}
   end
 
   test "#run with valid params, but invalid token", %{app: app} do
@@ -34,8 +47,12 @@ defmodule MessengerBot.Web.Service.SetupTest do
       "hub.mode" => "unsubscribe",
       "hub.verify_token" => "wrongone"
     }
-    result = Setup.run(app, params)
-    expected_payload = %{"hub.verify_token": "Token(wrongone) is not valid!", app_id: app.id}
-    assert result == {:unauthorized, expected_payload}
+    expected_payload = %Error{
+      app_id: @app_id,
+      code: :unauthorized,
+      details: %{verify_token: "Token(wrongone) is not valid!"}
+    }
+    result = Setup.run(app, params, @transaction_id)
+    assert result == {:error, expected_payload}
   end
 end

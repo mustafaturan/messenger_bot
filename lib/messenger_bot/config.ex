@@ -9,10 +9,10 @@ defmodule MessengerBot.Config do
 
   @typep app_id :: String.t()
   @typep app :: App.t()
-  @typep app_list :: Map.t()
+  @typep app_list :: map()
   @typep page :: Page.t()
   @typep page_id :: String.t()
-  @typep page_list :: Map.t()
+  @typep page_list :: map()
   @typep ttl :: integer()
   @typep str_token :: String.t()
 
@@ -57,7 +57,7 @@ defmodule MessengerBot.Config do
   @doc """
   Messenger App
   """
-  @spec app(app_id()) :: app() | Map.t()
+  @spec app(app_id()) :: app() | map()
   def app(app_id) do
     to_app(Map.get(apps(), app_id))
   end
@@ -65,7 +65,7 @@ defmodule MessengerBot.Config do
   @doc """
   Messenger Apps
   """
-  @spec apps() :: app_list() | list(Map.t())
+  @spec apps() :: app_list() | list(map())
   def apps do
     Application.get_env(@app, :apps, %{})
   end
@@ -83,7 +83,7 @@ defmodule MessengerBot.Config do
   @doc """
   Facebook Page
   """
-  @spec page(app_id(), page_id()) :: page() | Map.t()
+  @spec page(app_id(), page_id()) :: page() | map()
   def page(app_id, page_id) do
     app_id
     |> pages()
@@ -94,7 +94,7 @@ defmodule MessengerBot.Config do
   @doc """
   Facebook Page map for an app
   """
-  @spec pages(app_id()) :: page_list() | list(Map.t())
+  @spec pages(app_id()) :: page_list() | list(map())
   def pages(app_id) do
     Map.get(pages(), app_id, %{})
   end

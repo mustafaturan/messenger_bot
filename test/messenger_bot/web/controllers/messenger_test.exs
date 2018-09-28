@@ -19,11 +19,12 @@ defmodule MessengerBot.Web.Controller.MessengerTest do
       :get
       |> ConnHelper.build_conn("/#{@app_id}?a=1&b=2&c=3")
       |> Conn.put_private(:app, @app)
+      |> Conn.put_private(:tx_id, "xy")
 
-    with_mock Setup, [run: fn(_, _) -> {:ok, %{"hub.challenge" => "icebucket"}} end] do
+    with_mock Setup, [run: fn(_, _, _) -> {:ok, %{challenge: "icebucket"}} end] do
       conn = MessengerController.setup(conn)
 
-      assert called Setup.run(@app, %{"a" => "1", "b" => "2", "c" => "3"})
+      assert called Setup.run(@app, %{"a" => "1", "b" => "2", "c" => "3"}, "xy")
       assert conn.state == :sent
       assert conn.status == 200
       assert conn.resp_body == "icebucket"

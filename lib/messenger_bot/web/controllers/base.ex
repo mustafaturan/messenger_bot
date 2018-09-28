@@ -6,7 +6,7 @@ defmodule MessengerBot.Web.Controller.Base do
   @doc """
   Fetch query params
   """
-  @spec query_params(Conn.t()) :: Map.t()
+  @spec query_params(Conn.t()) :: map()
   def query_params(conn) do
     conn
     |> Conn.fetch_query_params()

@@ -5,6 +5,7 @@ defmodule MessengerBot.Web.Plug.MaxBodyLength do
   # Plug implementation to extract raw request body                          #
   ############################################################################
 
+  alias MessengerBot.Model.Error
   alias MessengerBot.Web.Renderer
   alias Plug.Conn
 
@@ -33,8 +34,8 @@ defmodule MessengerBot.Web.Plug.MaxBodyLength do
         {:ok, {conn, body}}
 
       _ ->
-        conn =
-          Renderer.send_error(conn, {422, %{body: "is bigger than expected"}})
+        error = %Error{code: 422, details: %{body: "is bigger than expected"}}
+        conn = Renderer.send_error(conn, error)
 
         {:error, {conn, nil}}
     end

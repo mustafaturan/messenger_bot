@@ -5,6 +5,7 @@ defmodule MessengerBot.Web.Plug.AppAuthentication do
   # Plug implementation to verify the sha1 signature with request body       #
   ############################################################################
 
+  alias MessengerBot.Model.Error
   alias MessengerBot.Util.Encryption
   alias MessengerBot.Web.Renderer
   alias Plug.Conn
@@ -23,12 +24,17 @@ defmodule MessengerBot.Web.Plug.AppAuthentication do
     case fetch_signature(conn) do
       ["sha1=" <> signature] ->
         case Encryption.validate_sha1(app.secret, body, signature) do
-          :ok -> conn
-          {:error, error} -> Renderer.send_error(conn, {:unauthorized, error})
+          :ok ->
+            conn
+
+          {:error, error} ->
+            error = %Error{app_id: app.id, code: :unauthorized, details: error}
+            Renderer.send_error(conn, error)
         end
 
       _ ->
-        Renderer.send_error(conn, {:unauthorized, %{signature: "required"}})
+        error = %Error{app_id: app.id, code: :unauthorized, details: %{signature: "required"}}
+        Renderer.send_error(conn, error)
     end
   end
 

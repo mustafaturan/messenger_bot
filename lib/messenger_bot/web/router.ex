@@ -7,6 +7,7 @@ defmodule MessengerBot.Web.Router do
 
   use Plug.Router
 
+  alias MessengerBot.Model.Error
   alias MessengerBot.Web.Controller.Messenger
   alias MessengerBot.Web.Plug.{AppAuthentication, AppIdentification, EventBus, MaxBodyLength, Transaction}
   alias MessengerBot.Web.Renderer
@@ -35,5 +36,9 @@ defmodule MessengerBot.Web.Router do
   # 404 response to all other routes
   # HEAD, GET, POST, PUT, PATCH, DELETE, OPTIONS /(.+)
   ############################################################################
-  match _, do: Renderer.send_error(conn, {:not_found, %{page: "Not found!"}})
+  match _, do: Renderer.send_error(conn, not_found())
+
+  defp not_found do
+    %Error{code: :not_found, details: %{page: "Not found!"}}
+  end
 end

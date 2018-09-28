@@ -77,7 +77,7 @@ defmodule MessengerBot do
   For HTTP client errors, it will return tuple of `{:error, %{error: reason}}`,
   where `reason` is an error tuple of `Tesla` dependency.
   """
-  @type res :: {:ok, Map.t()} | {:error, Map.t()}
+  @type res :: {:ok, map()} | {:error, map()}
 
   ############################################################################
   # Attachment Upload API                                                    #
@@ -93,7 +93,7 @@ defmodule MessengerBot do
       {:ok, %{"attachment_id" => "1857777774821032"}}
 
   """
-  @spec upload_attachment(page_ref(), Map.t(), tx_id() | nil) :: res()
+  @spec upload_attachment(page_ref(), map(), tx_id() | nil) :: res()
   def upload_attachment({app_id, page_id}, %{} = attachment, tx_id \\ nil) do
     Client.rpost(
       "/me/message_attachments",
@@ -116,7 +116,7 @@ defmodule MessengerBot do
       {:ok, %{"message_creative_id" => 938461089}}
 
   """
-  @spec create_message_creative(page_ref(), list(Map.t()), tx_id() | nil) :: res()
+  @spec create_message_creative(page_ref(), list(map()), tx_id() | nil) :: res()
   def create_message_creative({app_id, page_id}, messages, tx_id \\ nil) do
     Client.rpost(
       "/me/message_creatives",
@@ -135,7 +135,7 @@ defmodule MessengerBot do
       {:ok, %{"broadcast_id" => 827}}
 
   """
-  @spec broadcast_message(page_ref(), Map.t(), tx_id() | nil) :: res()
+  @spec broadcast_message(page_ref(), map(), tx_id() | nil) :: res()
   def broadcast_message({app_id, page_id}, %{} = message_ref, tx_id \\ nil) do
     Client.rpost(
       "/me/broadcast_messages",
@@ -197,7 +197,7 @@ defmodule MessengerBot do
       {:ok, %{"id" => 1712444532121303}}
 
   """
-  @spec create_custom_label(page_ref(), Map.t(), tx_id() | nil) :: res()
+  @spec create_custom_label(page_ref(), map(), tx_id() | nil) :: res()
   def create_custom_label({app_id, page_id}, %{} = label, tx_id \\ nil) do
     Client.rpost(
       "/me/custom_labels",
@@ -236,7 +236,7 @@ defmodule MessengerBot do
       {:ok, %{"success" => true}}
 
   """
-  @spec label_user(page_ref(), {integer(), Map.t()}, tx_id() | nil) :: res()
+  @spec label_user(page_ref(), {integer(), map()}, tx_id() | nil) :: res()
   def label_user({app_id, page_id}, {label_id, %{} = user}, tx_id \\ nil) do
     Client.rpost(
       "/#{label_id}/label",
@@ -256,7 +256,7 @@ defmodule MessengerBot do
       {:ok, %{"success" => true}}
 
   """
-  @spec unlabel_user(page_ref(), {integer(), Map.t()}, tx_id() | nil) :: res()
+  @spec unlabel_user(page_ref(), {integer(), map()}, tx_id() | nil) :: res()
   def unlabel_user({app_id, page_id}, {label_id, %{} = user}, tx_id \\ nil) do
     Client.rdelete(
       "/#{label_id}/label",
@@ -294,7 +294,7 @@ defmodule MessengerBot do
   @doc """
   Handover Protocol API / pass_thread_control
   """
-  @spec pass_thread_control(page_ref(), Map.t(), tx_id() | nil) :: res()
+  @spec pass_thread_control(page_ref(), map(), tx_id() | nil) :: res()
   def pass_thread_control({app_id, page_id}, %{} = req, tx_id \\ nil) do
     Client.rpost(
       "/me/pass_thread_control",
@@ -306,7 +306,7 @@ defmodule MessengerBot do
   @doc """
   Handover Protocol API / take_thread_control
   """
-  @spec take_thread_control(page_ref(), Map.t(), tx_id() | nil) :: res()
+  @spec take_thread_control(page_ref(), map(), tx_id() | nil) :: res()
   def take_thread_control({app_id, page_id}, %{} = req, tx_id \\ nil) do
     Client.rpost(
       "/me/take_thread_control",
@@ -318,7 +318,7 @@ defmodule MessengerBot do
   @doc """
   Handover Protocol API / request_thread_control
   """
-  @spec request_thread_control(page_ref(), Map.t(), tx_id() | nil) :: res()
+  @spec request_thread_control(page_ref(), map(), tx_id() | nil) :: res()
   def request_thread_control({app_id, page_id}, %{} = req, tx_id \\ nil) do
     Client.rpost(
       "/me/request_thread_control",
@@ -410,7 +410,7 @@ defmodule MessengerBot do
       {:ok, %{"uri" => "..."}}
 
   """
-  @spec create_messenger_code(page_ref(), Map.t(), tx_id() | nil) :: res()
+  @spec create_messenger_code(page_ref(), map(), tx_id() | nil) :: res()
   def create_messenger_code({app_id, page_id}, %{} = req, tx_id \\ nil) do
     Client.rpost(
       "/me/messenger_codes",
@@ -591,7 +591,7 @@ defmodule MessengerBot do
       {:ok, %{"result" => "success"}}
 
   """
-  @spec set_greeting(page_ref(), list(Map.t()), tx_id() | nil) :: res()
+  @spec set_greeting(page_ref(), list(map()), tx_id() | nil) :: res()
   def set_greeting({app_id, page_id}, greeting, tx_id \\ nil) do
     Client.rpost(
       "/me/messenger_profile",
@@ -646,7 +646,7 @@ defmodule MessengerBot do
       {:ok, %{"result" => "success"}}
 
   """
-  @spec set_home_url(page_ref(), Map.t(), tx_id() | nil) :: res()
+  @spec set_home_url(page_ref(), map(), tx_id() | nil) :: res()
   def set_home_url({app_id, page_id}, home_url, tx_id \\ nil) do
     Client.rpost(
       "/me/messenger_profile",
@@ -694,7 +694,7 @@ defmodule MessengerBot do
   @doc """
   Messenger Profile API / Set payment_settings
   """
-  @spec set_payment_settings(page_ref(), Map.t(), tx_id() | nil) :: res()
+  @spec set_payment_settings(page_ref(), map(), tx_id() | nil) :: res()
   def set_payment_settings({app_id, page_id}, payment_settings, tx_id \\ nil) do
     Client.rpost(
       "/me/messenger_profile",
@@ -804,7 +804,7 @@ defmodule MessengerBot do
       {:ok, %{"result" => "success"}}
 
   """
-  @spec set_target_audience(page_ref(), Map.t(), tx_id() | nil) :: res()
+  @spec set_target_audience(page_ref(), map(), tx_id() | nil) :: res()
   def set_target_audience({app_id, page_id}, target_audience, tx_id \\ nil) do
     Client.rpost(
       "/me/messenger_profile",
@@ -921,7 +921,7 @@ defmodule MessengerBot do
       {:ok, %{recipient_id" => "12", "message_id" => "mid..."}}
 
   """
-  @spec send_message(page_ref(), Map.t(), tx_id() | nil) :: res()
+  @spec send_message(page_ref(), map(), tx_id() | nil) :: res()
   def send_message({app_id, page_id}, %{} = req, tx_id \\ nil) do
     Client.rpost(
       "/me/messages",
@@ -944,7 +944,7 @@ defmodule MessengerBot do
       {:ok, %{"result" => "unlink account success"}}
 
   """
-  @spec unlink_account(page_ref(), Map.t(), tx_id() | nil) :: res()
+  @spec unlink_account(page_ref(), map(), tx_id() | nil) :: res()
   def unlink_account({app_id, page_id}, %{} = req, tx_id \\ nil) do
     Client.rpost(
       "/me/unlink_accounts",
@@ -991,7 +991,7 @@ defmodule MessengerBot do
       {:ok, %{"success" => true}}
 
   """
-  @spec set_nlp_configs(page_ref(), Map.t(), tx_id() | nil) :: res()
+  @spec set_nlp_configs(page_ref(), map(), tx_id() | nil) :: res()
   def set_nlp_configs({app_id, page_id}, params, tx_id \\ nil) do
     Client.rpost(
       "/me/nlp_configs",
