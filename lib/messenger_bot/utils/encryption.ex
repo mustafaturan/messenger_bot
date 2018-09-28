@@ -3,7 +3,7 @@ defmodule MessengerBot.Util.Encryption do
 
   alias :crypto, as: Crypto
 
-  @type err :: {:error, Map.t()}
+  @type err :: {:error, map()}
   @type res :: :ok | err()
 
   @doc """

@@ -10,14 +10,14 @@ defmodule MessengerBot.Web.Controller.Messenger do
   @doc """
   Facebook Messenger Platform Setup handler
   """
-  @spec setup(Conn.t()) :: no_return()
+  @spec setup(Conn.t()) :: Conn.t()
   def setup(conn) do
     case run_setup(conn) do
-      {:ok, %{"hub.challenge" => challenge}} ->
-        Renderer.send_ok(conn, challenge)
+      {:ok, setup_params} ->
+        Renderer.send_ok(conn, setup_params.challenge)
 
-      {status, reason} ->
-        Renderer.send_error(conn, {status, reason})
+      {:error, error} ->
+        Renderer.send_error(conn, error)
     end
   end
 
@@ -28,6 +28,7 @@ defmodule MessengerBot.Web.Controller.Messenger do
   for this approach which require special response data. Thus, this package
   doesn't support the 'checkout_update' and 'payment_pre_checkout' events.
   """
+  @spec callback(Conn.t()) :: Conn.t()
   def callback(conn) do
     conn
     |> run_callback()
@@ -38,10 +39,10 @@ defmodule MessengerBot.Web.Controller.Messenger do
   # PRIVATE                                                                  #
   ############################################################################
 
-  @spec run_setup(Conn.t()) :: no_return()
   defp run_setup(conn) do
-    app = Map.get(conn.private, :app)
-    Setup.run(app, query_params(conn))
+    params = [:app, :tx_id]
+    %{app: app, tx_id: tx_id} = Map.take(conn.private, params)
+    Setup.run(app, query_params(conn), tx_id)
   end
 
   defp run_callback(conn) do

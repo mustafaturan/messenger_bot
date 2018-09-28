@@ -3,27 +3,29 @@ defmodule MessengerBot.Web.Renderer do
 
   import Plug.Conn
 
+  alias MessengerBot.Model.Error
   alias MessengerBot.Util.JSON
   alias Plug.Conn
 
   @doc """
   Send ok response
   """
-  @spec send_ok(Conn.t()) :: no_return()
+  @spec send_ok(Conn.t()) :: Conn.t()
   def send_ok(conn, data \\ "[]") do
     conn
     |> put_resp_content_type("application/json")
     |> send_resp(:ok, data)
+    |> halt()
   end
 
   @doc """
   Send error response
   """
-  @spec send_error(Conn.t(), {atom() | integer(), Map.t()}) :: no_return()
-  def send_error(conn, {status, errors}) do
+  @spec send_error(Conn.t(), Error.t()) :: Conn.t()
+  def send_error(conn, error) do
     conn
     |> put_resp_content_type("application/json")
-    |> send_resp(status, JSON.encode!(%{errors: errors}))
+    |> send_resp(error.code, JSON.encode!(%{errors: error.details}))
     |> halt()
   end
 end

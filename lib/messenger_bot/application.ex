@@ -27,7 +27,8 @@ defmodule MessengerBot.Application do
     mb_take_thread_control_received
     mb_request_thread_control_received
     mb_na_received
-    mb_app_setup_received
+    mb_app_setup_succeeded
+    mb_app_setup_failed
     mb_attachment_upload_succeeded
     mb_create_message_creatives_succeeded
     mb_broadcast_message_succeeded

@@ -27,7 +27,7 @@ defmodule MessengerBot.Util.JSON do
   @doc """
   Decode
   """
-  @spec decode(String.t() | nil) :: {:ok, Map.t() | list()} | {:error, tuple()}
+  @spec decode(String.t() | nil) :: {:ok, map() | list()} | {:error, tuple()}
   def decode(payload) do
     {:ok, Jiffy.decode("#{payload}", @decode_opts)}
   catch

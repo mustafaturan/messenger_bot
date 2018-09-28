@@ -5,7 +5,9 @@ defmodule MessengerBot.Web.Service.Callback do
 
   use EventBus.EventSource
 
+  alias EventBus.Util.MonotonicTime
   alias MessengerBot.Util.JSON
+  alias MessengerBot.Util.String, as: MessengerBotStringUtil
 
   @doc """
   Process messaging webhooks coming from Facebook Messenger Platform
@@ -21,6 +23,7 @@ defmodule MessengerBot.Web.Service.Callback do
     :ok
   end
 
+  @spec process_entry(String.t(), tuple()) :: :ok
   defp process_entry(transaction_id, {app_id, %{"messaging" => messagings, "time" => time, "id" => page_id}}) do
     Enum.each(messagings, fn messaging ->
       process_messaging(transaction_id, {app_id, page_id, time, messaging})
@@ -30,24 +33,29 @@ defmodule MessengerBot.Web.Service.Callback do
   end
 
   defp process_entry(transaction_id, {app_id, %{"standby" => standby, "time" => time, "id" => page_id}}) do
-    params = init_event_params(:mb_standby_received, transaction_id)
+    params =
+      :mb_standby_received
+      |> init_event_params(transaction_id)
+      |> Map.put(:initialized_at, MonotonicTime.now())
+      |> Map.put(:data, %{app_id: app_id, standby: standby, page_id: page_id, time: time})
+      |> Map.put(:occurred_at, MonotonicTime.now())
+      |> Map.put(:id, MessengerBotStringUtil.unique_id())
 
-    EventSource.notify params do
-      %{app_id: app_id, standby: standby, page_id: page_id, time: time}
-    end
-
-    :ok
+    EventBus.notify(struct(Event, params))
   end
 
+  @spec process_messaging(String.t(), tuple()) :: :ok
   defp process_messaging(transaction_id, {app_id, page_id, time, messaging}) do
-    topic = fetch_topic(messaging)
-    params = init_event_params(topic, transaction_id)
+    params =
+      messaging
+      |> fetch_topic()
+      |> init_event_params(transaction_id)
+      |> Map.put(:initialized_at, MonotonicTime.now())
+      |> Map.put(:data, %{app_id: app_id, messaging: messaging, page_id: page_id, time: time})
+      |> Map.put(:occurred_at, MonotonicTime.now())
+      |> Map.put(:id, MessengerBotStringUtil.unique_id())
 
-    EventSource.notify params do
-      %{app_id: app_id, messaging: messaging, page_id: page_id, time: time}
-    end
-
-    :ok
+    EventBus.notify(struct(Event, params))
   end
 
   defp fetch_topic(%{"delivery" => _}) do

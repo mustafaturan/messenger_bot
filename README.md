@@ -147,7 +147,8 @@ config :event_bus,
     :mb_take_thread_control_received,
     :mb_request_thread_control_received,
     :mb_na_received,
-    :mb_app_setup_received,
+    :mb_app_setup_succeeded,
+    :mb_app_setup_failed,
     ##########################################################################
     # Client Request Topics
     ##########################################################################

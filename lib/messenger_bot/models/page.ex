@@ -12,6 +12,6 @@ defmodule MessengerBot.Model.Page do
           name: String.t(),
           access_token: String.t(),
           access_token_expires_at: integer(),
-          metadata: Map.t()
+          metadata: map()
         }
 end

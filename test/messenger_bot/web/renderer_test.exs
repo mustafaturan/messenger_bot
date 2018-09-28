@@ -1,6 +1,7 @@
 defmodule MessengerBot.Web.RendererTest do
   use ExUnit.Case
   alias MessengerBot.ConnHelper
+  alias MessengerBot.Model.Error
   alias MessengerBot.Web.Renderer
 
   doctest Renderer
@@ -17,7 +18,8 @@ defmodule MessengerBot.Web.RendererTest do
   end
 
   test ".send_error", %{conn: conn} do
-    conn = Renderer.send_error(conn, {:unauthorized, %{foo: "bar"}})
+    error = %Error{code: :unauthorized, details: %{foo: "bar"}}
+    conn = Renderer.send_error(conn, error)
     assert conn.resp_body == "{\"errors\":{\"foo\":\"bar\"}}"
     assert conn.state == :sent
     assert conn.status == 401
