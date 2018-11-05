@@ -17,6 +17,14 @@ defmodule MessengerBot.Config do
   @typep str_token :: String.t()
 
   @doc """
+  Facebook API version
+  """
+  @spec fb_api_version() :: String.t()
+  def fb_api_version do
+    Application.get_env(@app, :fb_api_version, "v2.12")
+  end
+
+  @doc """
   EventBus topic ttl for MessengerBot events default is 900_000_000 microseconds
   """
   @spec eb_ttl() :: ttl()

@@ -25,8 +25,24 @@ defmodule MessengerBot.ConfigTest do
     :ok
   end
 
+  test ".fb_api_version fallback to default" do
+    Application.delete_env(:messenger_bot, :fb_api_version)
+    assert Config.fb_api_version() == "v2.12"
+  end
+
+  test ".fb_api_version" do
+    Application.put_env(:messenger_bot, :fb_api_version, "v2.09")
+    assert Config.fb_api_version() == "v2.09"
+  end
+
+  test ".eb_ttl fallback to default" do
+    Application.delete_env(:messenger_bot, :eb_ttl)
+    assert Config.eb_ttl() == 900_000_000
+  end
+
   test ".eb_ttl" do
-    assert Config.eb_ttl == 900_000_000
+    Application.put_env(:messenger_bot, :eb_ttl, 600_000_000)
+    assert Config.eb_ttl() == 600_000_000
   end
 
   test ".app_setup_token" do

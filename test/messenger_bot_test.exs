@@ -719,7 +719,7 @@ defmodule MessengerBotTest do
 
       assert called Client.rdelete(
                       "/#{@page_id}/subscribed_apps",
-                      %{},
+                      %{access_token: "ATOKEN123"},
                       {@app_id, @page_id, :mb_unsubscribe_to_page_webhooks, @tx_id}
                     )
     end

@@ -21,9 +21,27 @@ defmodule MessengerBot.Client.Middleware.BearerAuthTest do
     end
 
     test "adds header correctly from query" do
-      {:ok, env} = Client.get("/", query: [access_token: "accesstokenforapp"], opts: [app_id: "1881", page_id: "1234"])
+      {:ok, env} = Client.get("/", query: [access_token: "accesstokenforquery"], opts: [app_id: "1881", page_id: "1234"])
       auth_header = Tesla.get_header(env, "Authorization")
-      assert auth_header == "Bearer accesstokenforapp"
+      assert auth_header == "Bearer accesstokenforquery"
+    end
+
+    test "remove access_token from query" do
+      {:ok, env} = Client.get("/", query: [access_token: "accesstokenforquery", other: "ok"], opts: [app_id: "1881", page_id: "1234"])
+      refute Keyword.get(env.query, :access_token)
+      assert Keyword.get(env.query, :other)
+    end
+
+    test "adds header correctly from body" do
+      {:ok, env} = Client.get("/", body: %{access_token: "accesstokenforbody"}, opts: [app_id: "1881", page_id: "1234"])
+      auth_header = Tesla.get_header(env, "Authorization")
+      assert auth_header == "Bearer accesstokenforbody"
+    end
+
+    test "remove access_token from body" do
+      {:ok, env} = Client.get("/", body: %{access_token: "accesstokenforbody", other: "ok"}, opts: [app_id: "1881", page_id: "1234"])
+      refute Map.get(env.body, :access_token)
+      assert Map.get(env.body, :other)
     end
 
     test "return error when page_access_token not exist" do

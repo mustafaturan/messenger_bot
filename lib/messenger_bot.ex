@@ -1035,7 +1035,7 @@ defmodule MessengerBot do
   def unsubscribe_to_page_webhooks({app_id, page_id}, tx_id \\ nil) do
     Client.rdelete(
       "/#{page_id}/subscribed_apps",
-      %{},
+      %{access_token: Config.app_access_token(app_id)},
       {app_id, page_id, :mb_unsubscribe_to_page_webhooks, tx_id}
     )
   end

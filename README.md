@@ -35,6 +35,7 @@ If you are using the app for a single page, `config.exs` seems to be right place
 
 ```elixir
 config :messenger_bot,
+  fb_api_version: "v2.12",
   pages: %{
     "1881" => %{
       "1234" => %{

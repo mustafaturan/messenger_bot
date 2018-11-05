@@ -7,6 +7,7 @@ defmodule MessengerBot.Client.Base do
 
   use Tesla, only: ~w(get post delete)a
 
+  alias MessengerBot.Config
   alias MessengerBot.Util.JSON
   alias MessengerBot.Util.String, as: StringUtil
 
@@ -16,7 +17,7 @@ defmodule MessengerBot.Client.Base do
   plug Tesla.Middleware.JSON, decode: &JSON.decode/1, encode: &JSON.encode/1
   plug MessengerBot.Client.Middleware.EventBus
 
-  @api_version "v2.12"
+  @api_version Config.fb_api_version()
 
   def rget(path, query_params, opts) do
     get(
