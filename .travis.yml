@@ -2,8 +2,10 @@ language: elixir
 elixir:
   - 1.5
   - 1.6
+  - 1.7
+  - 1.8
 otp_release:
-  - 20.0
+  - 21.0
 
 script:
   - MIX_ENV=test mix do compile --warnings-as-errors, coveralls.json
