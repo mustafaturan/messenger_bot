@@ -328,7 +328,7 @@ defmodule MessengerBotTest do
   test ".fetch_insights" do
     metrics = ~w(page_messages_new_conversations_unique page_messages_active_threads_unique)
     since = 0
-    until = System.os_time(:seconds)
+    until = System.os_time(:second)
 
     with_mock Client, [rget: fn(_, _, _) -> {:ok, %{}} end] do
       MessengerBot.fetch_insights({@app_id, @page_id}, {metrics, since, until}, @tx_id)
