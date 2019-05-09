@@ -37,7 +37,7 @@ defmodule MessengerBot.Mixfile do
       {:event_bus, ">= 1.6.0"},
       {:tesla, ">= 1.0.0"},
       {:plug, ">= 1.4.0"},
-      {:uuid, "~> 1.1"},
+      {:elixir_uuid, "~> 1.2"},
       {:jiffy, "~> 0.15"},
       {:mock, "~> 0.3", only: [:test]},
       {:credo, "~> 1.0", only: [:dev, :test], runtime: false},
